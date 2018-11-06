@@ -1,0 +1,45 @@
+import matplotlib.pyplot as plt
+
+S = 1000
+I = 10
+R = 0
+M = 0
+time = 2000
+j = 0
+nb_step = 1
+X = [S,I,R,M]
+dS = int
+dI = int
+dR = int
+dM = int
+Xpoint = [[dS,dI,dR,dM] for _ in range(time)]
+b = 1/(3*S)
+g = 1/20
+d= 5/1000
+n=0
+print(X)
+def SIRsystem(X):
+    h = -b*X[0]*X[1]+n*X[2]
+    f = b*X[0]*X[1]-g*X[1]-d*X[1]
+    y = g*X[1]-n*X[2]
+    z = d*X[1]
+    X[0] += h
+    X[1] += f
+    X[2] += y
+    X[3] += z
+    Xpoint[j][0] = X[0]
+    Xpoint[j][1] = X[1]
+    Xpoint[j][2] = X[2]
+    Xpoint[j][3] = X[3]
+   
+for i in range(0,time,nb_step):
+    SIRsystem(X)
+    j += 1
+  #  print(X)
+print(Xpoint)
+
+print('taux de guérison ' + str(g))
+print("taux d'infection " + str(b))
+print("mortalité " + str(d))
+
+#PLOT ?? je n'y parviens pas
